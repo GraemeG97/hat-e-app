@@ -1,6 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
+
 export default function Navbar() {
+  const { userId } = auth();
   return (
     <>
       <nav className="bg-green-300 py-2">
@@ -44,6 +49,9 @@ export default function Navbar() {
             >
               Beanies
             </Link>
+            <div className="px-4 py-2 hover:text-gray-900 hover:shadow-md rounded-md bg-[#5048ed] text-black hover:bg-gray-300">
+              {userId ? <UserButton /> : <SignInButton />}
+            </div>
           </div>
         </div>
       </nav>
